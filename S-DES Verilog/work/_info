@@ -1,0 +1,93 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dD:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog
+vSDES
+Z1 !s110 1783696800
+!i10b 1
+!s100 cHziEZ@nA:O[NE:8Jn4_90
+I57YKI4ki22a6RO5R_?gR<0
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1783696525
+8SDES_en.v
+FSDES_en.v
+L0 6
+Z3 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z4 !s108 1783696800.000000
+Z5 !s107 TOPM_tb.v|TOPM.v|spi_control.v|SDES_en.v|
+Z6 !s90 -reportprogress|300|SDES_en.v|spi_control.v|TOPM.v|TOPM_tb.v|
+!i113 1
+Z7 tCvgOpt 0
+n@s@d@e@s
+vspi_control
+R1
+!i10b 1
+!s100 GB5>V<bdBP^V`d=L6f7cZ2
+I0aC^1:cP=?^Y6<0V;bGI_0
+R2
+R0
+w1783694712
+8spi_control.v
+Fspi_control.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+R5
+R6
+!i113 1
+R7
+vTOPM
+R1
+!i10b 1
+!s100 >hM>SGPY<jkHLFP05:iBB3
+IkYl1]B@S9DgddnnA[OdU?3
+R2
+R0
+w1783694677
+8TOPM.v
+FTOPM.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+R5
+R6
+!i113 1
+R7
+n@t@o@p@m
+vTOPM_tb
+R1
+!i10b 1
+!s100 biOD;2LoPm;>;2f<b>>W?1
+Io[0b6gTGc^d=GPg?O8=6H2
+R2
+R0
+w1783696251
+8TOPM_tb.v
+FTOPM_tb.v
+L0 3
+R3
+r1
+!s85 0
+31
+R4
+R5
+R6
+!i113 1
+R7
+n@t@o@p@m_tb

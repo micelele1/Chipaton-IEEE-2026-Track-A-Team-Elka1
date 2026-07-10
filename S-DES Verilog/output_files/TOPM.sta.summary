@@ -1,0 +1,101 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1100mV 85C Model Setup 'spi_control:u_spi_block|data_ready'
+Slack : -8.527
+TNS   : -61.914
+
+Type  : Slow 1100mV 85C Model Setup 'SPI_SCLK'
+Slack : -3.389
+TNS   : -85.126
+
+Type  : Slow 1100mV 85C Model Hold 'SPI_SCLK'
+Slack : 0.345
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Hold 'spi_control:u_spi_block|data_ready'
+Slack : 4.665
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'SPI_SCLK'
+Slack : -0.724
+TNS   : -63.667
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'spi_control:u_spi_block|data_ready'
+Slack : 0.336
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Setup 'spi_control:u_spi_block|data_ready'
+Slack : -8.697
+TNS   : -63.844
+
+Type  : Slow 1100mV 0C Model Setup 'SPI_SCLK'
+Slack : -3.298
+TNS   : -78.839
+
+Type  : Slow 1100mV 0C Model Hold 'SPI_SCLK'
+Slack : 0.192
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Hold 'spi_control:u_spi_block|data_ready'
+Slack : 4.748
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'SPI_SCLK'
+Slack : -0.724
+TNS   : -63.451
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'spi_control:u_spi_block|data_ready'
+Slack : 0.412
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Setup 'spi_control:u_spi_block|data_ready'
+Slack : -3.130
+TNS   : -22.569
+
+Type  : Fast 1100mV 85C Model Setup 'SPI_SCLK'
+Slack : -1.555
+TNS   : -15.446
+
+Type  : Fast 1100mV 85C Model Hold 'SPI_SCLK'
+Slack : 0.160
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Hold 'spi_control:u_spi_block|data_ready'
+Slack : 2.218
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'SPI_SCLK'
+Slack : -0.090
+TNS   : -4.937
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'spi_control:u_spi_block|data_ready'
+Slack : 0.455
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Setup 'spi_control:u_spi_block|data_ready'
+Slack : -2.948
+TNS   : -21.313
+
+Type  : Fast 1100mV 0C Model Setup 'SPI_SCLK'
+Slack : -1.147
+TNS   : -10.343
+
+Type  : Fast 1100mV 0C Model Hold 'SPI_SCLK'
+Slack : 0.142
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Hold 'spi_control:u_spi_block|data_ready'
+Slack : 2.149
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'SPI_SCLK'
+Slack : -0.088
+TNS   : -4.919
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'spi_control:u_spi_block|data_ready'
+Slack : 0.472
+TNS   : 0.000
+
+------------------------------------------------------------
