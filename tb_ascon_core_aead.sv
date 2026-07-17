@@ -64,7 +64,8 @@ module tb_ascon_core_aead;
     '{128'h000102030405060708090A0B0C0D0E0F, 128'h000102030405060708090A0B0C0D0E0F, 128'h4427d64b8e1e1451fc445960f0839bb0}
   };
 
-  task send_key(input logic [127:0] k);
+  // Fix 1: Tambah 'automatic' dan jeda '#1' setelah clock
+  task automatic send_key(input logic [127:0] k);
     key_valid = 1;
     for (int i=0; i<4; i++) begin
       logic [31:0] k_word;
@@ -73,12 +74,13 @@ module tb_ascon_core_aead;
       key = {k_word[7:0], k_word[15:8], k_word[23:16], k_word[31:24]};
       
       wait(key_ready);
-      @(posedge clk);
+      @(posedge clk); #1; 
     end
     key_valid = 0;
   endtask
 
-  task send_nonce(input logic [127:0] n, input logic eoi);
+  // Fix 2: Tambah 'automatic' dan jeda '#1' setelah clock
+  task automatic send_nonce(input logic [127:0] n, input logic eoi);
     bdi_valid = 4'b1111;
     bdi_type = 4'd1; 
     bdi_eot = 1;
@@ -91,7 +93,7 @@ module tb_ascon_core_aead;
       
       if (i == 3) bdi_eoi = eoi; 
       wait(bdi_ready);
-      @(posedge clk);
+      @(posedge clk); #1;
     end
     bdi_valid = 0;
     bdi_type = 4'd0; 
@@ -128,10 +130,17 @@ module tb_ascon_core_aead;
     for (int i = 0; i < 2; i++) begin
       $display("\n--- Menjalankan Kasus Uji %0d ---", i+1);
       
+      // Fix 3: Matikan semua sinyal valid sebelum reset agar hardware bersih
+      key_valid = 0;
+      bdi_valid = 0;
+      mode = 4'd0;
+      @(posedge clk); #1;
+      
+      // Fix 4: Reset diperpanjang biar FSM balik ke IDLE dengan sempurna
       rst = 1;
-      #20;
+      #100;
       rst = 0;
-      @(posedge clk);
+      @(posedge clk); #1;
 
       mode = 4'd1; 
       send_key(test_vectors[i].k);
@@ -140,27 +149,31 @@ module tb_ascon_core_aead;
       tag_words = 0;
       actual_tag = 128'h0;
       
-      fork
-        begin : wait_for_tag
-          while (tag_words < 4) begin
-            @(posedge clk);
-            if (bdo_valid && bdo_ready && bdo_type == 4'd4) begin 
-              actual_tag[127 - 32*tag_words -: 32] = {bdo[7:0], bdo[15:8], bdo[23:16], bdo[31:24]};
-              tag_words++;
-            end
+      // Fix 5: Ganti fork-join pakai timeout counter. AMAN 100%.
+      begin : wait_for_tag
+        int timeout_ctr;
+		  timeout_ctr = 0;
+        
+        while (tag_words < 4) begin
+          @(posedge clk);
+          timeout_ctr++;
+          
+          if (bdo_valid && bdo_ready && bdo_type == 4'd4) begin 
+            actual_tag[127 - 32*tag_words -: 32] = {bdo[7:0], bdo[15:8], bdo[23:16], bdo[31:24]};
+            tag_words++;
+          end
+          
+          // Jika sudah nunggu 2000 siklus clock (20us) tapi tag gak lengkap, stop paksanya
+          if (timeout_ctr > 2000) begin
+            $display("[Error] Timeout! FSM macet atau Tag tidak keluar sepenuhnya.");
+            break;
           end
         end
-        begin : timeout
-          #2000;
-          $display("[Error] Timeout! FSM macet atau Tag tidak keluar sepenuhnya.");
-        end
-      join_any
-      disable wait_for_tag;
-      disable timeout;
+      end
 
-      if (actual_tag == test_vectors[i].expected_tag) begin
+      if (actual_tag == test_vectors[i].expected_tag && tag_words == 4) begin
         $display("[HASIL] PASS");
-		  $display("  -> Expected Tag : %x", test_vectors[i].expected_tag);
+        $display("  -> Expected Tag : %x", test_vectors[i].expected_tag);
         $display("  -> Actual Tag   : %x", actual_tag);
         total_pass++;
       end else begin
