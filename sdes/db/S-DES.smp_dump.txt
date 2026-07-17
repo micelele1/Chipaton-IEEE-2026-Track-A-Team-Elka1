@@ -1,0 +1,7 @@
+
+State Machine - |TOPM|spi_control:u_spi_block|state
+Name state.STATE_TRANSMIT state.STATE_COMPUTE state.STATE_RECEIVE state.STATE_IDLE 
+state.STATE_IDLE 0 0 0 0 
+state.STATE_RECEIVE 0 0 1 1 
+state.STATE_COMPUTE 0 1 0 1 
+state.STATE_TRANSMIT 1 0 0 1 

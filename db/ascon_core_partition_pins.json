@@ -1,0 +1,501 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "key_ready",
+					"strict" : false
+				},
+				{
+					"name" : "bdi_ready",
+					"strict" : false
+				},
+				{
+					"name" : "bdo[0]",
+					"strict" : false
+				},
+				{
+					"name" : "bdo[1]",
+					"strict" : false
+				},
+				{
+					"name" : "bdo[2]",
+					"strict" : false
+				},
+				{
+					"name" : "bdo[3]",
+					"strict" : false
+				},
+				{
+					"name" : "bdo[4]",
+					"strict" : false
+				},
+				{
+					"name" : "bdo[5]",
+					"strict" : false
+				},
+				{
+					"name" : "bdo[6]",
+					"strict" : false
+				},
+				{
+					"name" : "bdo[7]",
+					"strict" : false
+				},
+				{
+					"name" : "bdo[8]",
+					"strict" : false
+				},
+				{
+					"name" : "bdo[9]",
+					"strict" : false
+				},
+				{
+					"name" : "bdo[10]",
+					"strict" : false
+				},
+				{
+					"name" : "bdo[11]",
+					"strict" : false
+				},
+				{
+					"name" : "bdo[12]",
+					"strict" : false
+				},
+				{
+					"name" : "bdo[13]",
+					"strict" : false
+				},
+				{
+					"name" : "bdo[14]",
+					"strict" : false
+				},
+				{
+					"name" : "bdo[15]",
+					"strict" : false
+				},
+				{
+					"name" : "bdo[16]",
+					"strict" : false
+				},
+				{
+					"name" : "bdo[17]",
+					"strict" : false
+				},
+				{
+					"name" : "bdo[18]",
+					"strict" : false
+				},
+				{
+					"name" : "bdo[19]",
+					"strict" : false
+				},
+				{
+					"name" : "bdo[20]",
+					"strict" : false
+				},
+				{
+					"name" : "bdo[21]",
+					"strict" : false
+				},
+				{
+					"name" : "bdo[22]",
+					"strict" : false
+				},
+				{
+					"name" : "bdo[23]",
+					"strict" : false
+				},
+				{
+					"name" : "bdo[24]",
+					"strict" : false
+				},
+				{
+					"name" : "bdo[25]",
+					"strict" : false
+				},
+				{
+					"name" : "bdo[26]",
+					"strict" : false
+				},
+				{
+					"name" : "bdo[27]",
+					"strict" : false
+				},
+				{
+					"name" : "bdo[28]",
+					"strict" : false
+				},
+				{
+					"name" : "bdo[29]",
+					"strict" : false
+				},
+				{
+					"name" : "bdo[30]",
+					"strict" : false
+				},
+				{
+					"name" : "bdo[31]",
+					"strict" : false
+				},
+				{
+					"name" : "bdo_valid",
+					"strict" : false
+				},
+				{
+					"name" : "bdo_type[0]",
+					"strict" : false
+				},
+				{
+					"name" : "bdo_type[1]",
+					"strict" : false
+				},
+				{
+					"name" : "bdo_type[2]",
+					"strict" : false
+				},
+				{
+					"name" : "bdo_eot",
+					"strict" : false
+				},
+				{
+					"name" : "auth",
+					"strict" : false
+				},
+				{
+					"name" : "auth_valid",
+					"strict" : false
+				},
+				{
+					"name" : "bdo_ready",
+					"strict" : false
+				},
+				{
+					"name" : "bdi[0]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi_valid[0]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi[1]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi[2]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi[3]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi[4]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi[5]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi[6]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi[7]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi_valid[1]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi[8]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi[9]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi[10]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi[11]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi[12]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi[13]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi[14]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi[15]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi_valid[2]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi[16]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi[17]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi[18]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi[19]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi[20]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi[21]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi[22]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi[23]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi_valid[3]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi[24]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi[25]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi[26]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi[27]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi[28]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi[29]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi[30]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi[31]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi_eot",
+					"strict" : false
+				},
+				{
+					"name" : "bdi_type[0]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi_type[1]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi_type[2]",
+					"strict" : false
+				},
+				{
+					"name" : "bdi_type[3]",
+					"strict" : false
+				},
+				{
+					"name" : "clk",
+					"strict" : false
+				},
+				{
+					"name" : "rst",
+					"strict" : false
+				},
+				{
+					"name" : "mode[0]",
+					"strict" : false
+				},
+				{
+					"name" : "mode[1]",
+					"strict" : false
+				},
+				{
+					"name" : "mode[2]",
+					"strict" : false
+				},
+				{
+					"name" : "mode[3]",
+					"strict" : false
+				},
+				{
+					"name" : "key_valid",
+					"strict" : false
+				},
+				{
+					"name" : "bdi_eoi",
+					"strict" : false
+				},
+				{
+					"name" : "key[0]",
+					"strict" : false
+				},
+				{
+					"name" : "key[1]",
+					"strict" : false
+				},
+				{
+					"name" : "key[2]",
+					"strict" : false
+				},
+				{
+					"name" : "key[3]",
+					"strict" : false
+				},
+				{
+					"name" : "key[4]",
+					"strict" : false
+				},
+				{
+					"name" : "key[5]",
+					"strict" : false
+				},
+				{
+					"name" : "key[6]",
+					"strict" : false
+				},
+				{
+					"name" : "key[7]",
+					"strict" : false
+				},
+				{
+					"name" : "key[8]",
+					"strict" : false
+				},
+				{
+					"name" : "key[9]",
+					"strict" : false
+				},
+				{
+					"name" : "key[10]",
+					"strict" : false
+				},
+				{
+					"name" : "key[11]",
+					"strict" : false
+				},
+				{
+					"name" : "key[12]",
+					"strict" : false
+				},
+				{
+					"name" : "key[13]",
+					"strict" : false
+				},
+				{
+					"name" : "key[14]",
+					"strict" : false
+				},
+				{
+					"name" : "key[15]",
+					"strict" : false
+				},
+				{
+					"name" : "key[16]",
+					"strict" : false
+				},
+				{
+					"name" : "key[17]",
+					"strict" : false
+				},
+				{
+					"name" : "key[18]",
+					"strict" : false
+				},
+				{
+					"name" : "key[19]",
+					"strict" : false
+				},
+				{
+					"name" : "key[20]",
+					"strict" : false
+				},
+				{
+					"name" : "key[21]",
+					"strict" : false
+				},
+				{
+					"name" : "key[22]",
+					"strict" : false
+				},
+				{
+					"name" : "key[23]",
+					"strict" : false
+				},
+				{
+					"name" : "key[24]",
+					"strict" : false
+				},
+				{
+					"name" : "key[25]",
+					"strict" : false
+				},
+				{
+					"name" : "key[26]",
+					"strict" : false
+				},
+				{
+					"name" : "key[27]",
+					"strict" : false
+				},
+				{
+					"name" : "key[28]",
+					"strict" : false
+				},
+				{
+					"name" : "key[29]",
+					"strict" : false
+				},
+				{
+					"name" : "key[30]",
+					"strict" : false
+				},
+				{
+					"name" : "key[31]",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

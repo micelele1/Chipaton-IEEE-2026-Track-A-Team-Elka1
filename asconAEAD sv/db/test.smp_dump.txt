@@ -1,0 +1,10 @@
+
+State Machine - |ascon_top|spi_controller:spi_ctrl|state
+Name state.S_READ_DATA state.S_LOAD_MSG state.S_LOAD_AD state.S_LOAD_NONCE state.S_LOAD_KEY state.S_GET_CMD state.S_IDLE 
+state.S_IDLE 0 0 0 0 0 0 0 
+state.S_GET_CMD 0 0 0 0 0 1 1 
+state.S_LOAD_KEY 0 0 0 0 1 0 1 
+state.S_LOAD_NONCE 0 0 0 1 0 0 1 
+state.S_LOAD_AD 0 0 1 0 0 0 1 
+state.S_LOAD_MSG 0 1 0 0 0 0 1 
+state.S_READ_DATA 1 0 0 0 0 0 1 

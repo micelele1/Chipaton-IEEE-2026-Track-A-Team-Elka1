@@ -1,0 +1,33 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "SPI_MISO",
+					"strict" : false
+				},
+				{
+					"name" : "IRQ",
+					"strict" : false
+				},
+				{
+					"name" : "SPI_SCLK",
+					"strict" : false
+				},
+				{
+					"name" : "RST_N",
+					"strict" : false
+				},
+				{
+					"name" : "SPI_CS_N",
+					"strict" : false
+				},
+				{
+					"name" : "SPI_MOSI",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

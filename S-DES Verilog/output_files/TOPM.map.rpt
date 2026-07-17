@@ -1,5 +1,5 @@
 Analysis & Synthesis report for TOPM
-Fri Jul 10 20:34:49 2026
+Sun Jul 12 23:27:43 2026
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -47,7 +47,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Fri Jul 10 20:34:49 2026       ;
+; Analysis & Synthesis Status     ; Successful - Sun Jul 12 23:27:43 2026       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; TOPM                                        ;
 ; Top-level Entity Name           ; TOPM                                        ;
@@ -167,8 +167,7 @@ refer to the applicable agreement for further details.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.0%      ;
-;     Processors 3-16        ;   0.0%      ;
+;     Processors 2-16        ;   0.0%      ;
 +----------------------------+-------------+
 
 
@@ -240,14 +239,14 @@ Encoding Type:  One-Hot
 +----------------------------------------------------+------------------------------------+------------------------+
 ; Latch Name                                         ; Latch Enable Signal                ; Free of Timing Hazards ;
 +----------------------------------------------------+------------------------------------+------------------------+
-; SDES:u_sdes_core|iip_out[0]                        ; spi_control:u_spi_block|data_ready ; yes                    ;
-; SDES:u_sdes_core|iip_out[1]                        ; spi_control:u_spi_block|data_ready ; yes                    ;
-; SDES:u_sdes_core|iip_out[2]                        ; spi_control:u_spi_block|data_ready ; yes                    ;
-; SDES:u_sdes_core|iip_out[3]                        ; spi_control:u_spi_block|data_ready ; yes                    ;
-; SDES:u_sdes_core|iip_out[4]                        ; spi_control:u_spi_block|data_ready ; yes                    ;
-; SDES:u_sdes_core|iip_out[5]                        ; spi_control:u_spi_block|data_ready ; yes                    ;
-; SDES:u_sdes_core|iip_out[6]                        ; spi_control:u_spi_block|data_ready ; yes                    ;
 ; SDES:u_sdes_core|iip_out[7]                        ; spi_control:u_spi_block|data_ready ; yes                    ;
+; SDES:u_sdes_core|iip_out[6]                        ; spi_control:u_spi_block|data_ready ; yes                    ;
+; SDES:u_sdes_core|iip_out[5]                        ; spi_control:u_spi_block|data_ready ; yes                    ;
+; SDES:u_sdes_core|iip_out[4]                        ; spi_control:u_spi_block|data_ready ; yes                    ;
+; SDES:u_sdes_core|iip_out[3]                        ; spi_control:u_spi_block|data_ready ; yes                    ;
+; SDES:u_sdes_core|iip_out[2]                        ; spi_control:u_spi_block|data_ready ; yes                    ;
+; SDES:u_sdes_core|iip_out[1]                        ; spi_control:u_spi_block|data_ready ; yes                    ;
+; SDES:u_sdes_core|iip_out[0]                        ; spi_control:u_spi_block|data_ready ; yes                    ;
 ; Number of user-specified and inferred latches = 8  ;                                    ;                        ;
 +----------------------------------------------------+------------------------------------+------------------------+
 Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
@@ -337,7 +336,7 @@ Note: All latches listed above may not be present at the end of synthesis due to
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Fri Jul 10 20:34:27 2026
+    Info: Processing started: Sun Jul 12 23:27:36 2026
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off S-DES -c TOPM
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
@@ -346,28 +345,24 @@ Info (12021): Found 1 design units, including 1 entities, in source file topm.v
 Info (12021): Found 1 design units, including 1 entities, in source file spi_control.v
     Info (12023): Found entity 1: spi_control File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/spi_control.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file sdes_en.v
-    Info (12023): Found entity 1: SDES File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/SDES_En.v Line: 7
+    Info (12023): Found entity 1: SDES File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/SDES_En.v Line: 6
 Info (12127): Elaborating entity "TOPM" for the top level hierarchy
 Info (12128): Elaborating entity "spi_control" for hierarchy "spi_control:u_spi_block" File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/TOPM.v Line: 28
 Info (12128): Elaborating entity "SDES" for hierarchy "SDES:u_sdes_core" File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/TOPM.v Line: 36
-Warning (10235): Verilog HDL Always Construct warning at SDES_En.v(135): variable "key" is read inside the Always Construct but isn't in the Always Construct's Event Control File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/SDES_En.v Line: 135
-Warning (10235): Verilog HDL Always Construct warning at SDES_En.v(138): variable "plaintext" is read inside the Always Construct but isn't in the Always Construct's Event Control File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/SDES_En.v Line: 138
-Warning (10235): Verilog HDL Always Construct warning at SDES_En.v(141): variable "encrypt" is read inside the Always Construct but isn't in the Always Construct's Event Control File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/SDES_En.v Line: 141
-Warning (10235): Verilog HDL Always Construct warning at SDES_En.v(150): variable "encrypt" is read inside the Always Construct but isn't in the Always Construct's Event Control File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/SDES_En.v Line: 150
-Warning (10240): Verilog HDL Always Construct warning at SDES_En.v(129): inferring latch(es) for variable "tempB", which holds its previous value in one or more paths through the always construct File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/SDES_En.v Line: 129
-Warning (10240): Verilog HDL Always Construct warning at SDES_En.v(129): inferring latch(es) for variable "tempD", which holds its previous value in one or more paths through the always construct File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/SDES_En.v Line: 129
-Warning (10240): Verilog HDL Always Construct warning at SDES_En.v(129): inferring latch(es) for variable "IP_out", which holds its previous value in one or more paths through the always construct File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/SDES_En.v Line: 129
-Warning (10240): Verilog HDL Always Construct warning at SDES_En.v(129): inferring latch(es) for variable "feistel_out", which holds its previous value in one or more paths through the always construct File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/SDES_En.v Line: 129
-Warning (10240): Verilog HDL Always Construct warning at SDES_En.v(129): inferring latch(es) for variable "sw_out", which holds its previous value in one or more paths through the always construct File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/SDES_En.v Line: 129
-Warning (10240): Verilog HDL Always Construct warning at SDES_En.v(129): inferring latch(es) for variable "iip_out", which holds its previous value in one or more paths through the always construct File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/SDES_En.v Line: 129
-Info (10041): Inferred latch for "iip_out[7]" at SDES_En.v(131) File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/SDES_En.v Line: 131
-Info (10041): Inferred latch for "iip_out[6]" at SDES_En.v(131) File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/SDES_En.v Line: 131
-Info (10041): Inferred latch for "iip_out[5]" at SDES_En.v(131) File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/SDES_En.v Line: 131
-Info (10041): Inferred latch for "iip_out[4]" at SDES_En.v(131) File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/SDES_En.v Line: 131
-Info (10041): Inferred latch for "iip_out[3]" at SDES_En.v(131) File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/SDES_En.v Line: 131
-Info (10041): Inferred latch for "iip_out[2]" at SDES_En.v(131) File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/SDES_En.v Line: 131
-Info (10041): Inferred latch for "iip_out[1]" at SDES_En.v(131) File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/SDES_En.v Line: 131
-Info (10041): Inferred latch for "iip_out[0]" at SDES_En.v(131) File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/SDES_En.v Line: 131
+Warning (10240): Verilog HDL Always Construct warning at SDES_En.v(139): inferring latch(es) for variable "tempB", which holds its previous value in one or more paths through the always construct File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/SDES_En.v Line: 139
+Warning (10240): Verilog HDL Always Construct warning at SDES_En.v(139): inferring latch(es) for variable "tempD", which holds its previous value in one or more paths through the always construct File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/SDES_En.v Line: 139
+Warning (10240): Verilog HDL Always Construct warning at SDES_En.v(139): inferring latch(es) for variable "IP_out", which holds its previous value in one or more paths through the always construct File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/SDES_En.v Line: 139
+Warning (10240): Verilog HDL Always Construct warning at SDES_En.v(139): inferring latch(es) for variable "feistel_out", which holds its previous value in one or more paths through the always construct File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/SDES_En.v Line: 139
+Warning (10240): Verilog HDL Always Construct warning at SDES_En.v(139): inferring latch(es) for variable "sw_out", which holds its previous value in one or more paths through the always construct File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/SDES_En.v Line: 139
+Warning (10240): Verilog HDL Always Construct warning at SDES_En.v(139): inferring latch(es) for variable "iip_out", which holds its previous value in one or more paths through the always construct File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/SDES_En.v Line: 139
+Info (10041): Inferred latch for "iip_out[0]" at SDES_En.v(139) File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/SDES_En.v Line: 139
+Info (10041): Inferred latch for "iip_out[1]" at SDES_En.v(139) File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/SDES_En.v Line: 139
+Info (10041): Inferred latch for "iip_out[2]" at SDES_En.v(139) File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/SDES_En.v Line: 139
+Info (10041): Inferred latch for "iip_out[3]" at SDES_En.v(139) File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/SDES_En.v Line: 139
+Info (10041): Inferred latch for "iip_out[4]" at SDES_En.v(139) File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/SDES_En.v Line: 139
+Info (10041): Inferred latch for "iip_out[5]" at SDES_En.v(139) File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/SDES_En.v Line: 139
+Info (10041): Inferred latch for "iip_out[6]" at SDES_En.v(139) File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/SDES_En.v Line: 139
+Info (10041): Inferred latch for "iip_out[7]" at SDES_En.v(139) File: D:/ACADS/CHIPATHON/2026/Chipaton-IEEE-2026-Track-A-Team-Elka1/S-DES Verilog/SDES_En.v Line: 139
 Info (286030): Timing-Driven Synthesis is running
 Info (17049): 2 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
@@ -376,10 +371,10 @@ Info (21057): Implemented 99 device resources after synthesis - the final resour
     Info (21058): Implemented 4 input pins
     Info (21059): Implemented 2 output pins
     Info (21061): Implemented 93 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 11 warnings
-    Info: Peak virtual memory: 4904 megabytes
-    Info: Processing ended: Fri Jul 10 20:34:49 2026
-    Info: Elapsed time: 00:00:22
-    Info: Total CPU time (on all processors): 00:00:20
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 7 warnings
+    Info: Peak virtual memory: 4903 megabytes
+    Info: Processing ended: Sun Jul 12 23:27:43 2026
+    Info: Elapsed time: 00:00:07
+    Info: Total CPU time (on all processors): 00:00:16
 
 
