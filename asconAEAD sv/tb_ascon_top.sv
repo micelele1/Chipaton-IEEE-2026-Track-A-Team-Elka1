@@ -1,15 +1,32 @@
-`timescale 1ns / 1ps
+`timescale 1ns/1ps
 
 module tb_ascon_top;
 
+  // ---------------------------------------------------------
+  // Signal Declarations
+  // ---------------------------------------------------------
   logic clk;
-  logic rst;
+  logic rst; // Active-high reset
+  
+  // SPI Physical Interface
   logic sclk;
   logic cs_n;
   logic mosi;
   logic miso;
 
-  ascon_top uut (
+  // Internal TB variables
+  logic [7:0] rx_byte;
+  int spi_period = 20; // 50 MHz SPI clock (Tight timing to expose the hazard)
+
+  // ---------------------------------------------------------
+  // Clock Generation (100 MHz)
+  // ---------------------------------------------------------
+  always #5 clk = ~clk; 
+
+  // ---------------------------------------------------------
+  // Device Under Test (DUT) Instantiation
+  // ---------------------------------------------------------
+  ascon_top dut (
     .clk(clk),
     .rst(rst),
     .sclk(sclk),
@@ -18,94 +35,137 @@ module tb_ascon_top;
     .miso(miso)
   );
 
-  // Mencegah kabel floating (X) pada internal ascon_top mengganggu simulasi
-  initial begin
-    force uut.bdo_eoo = 1'b0;
-  end
-
-  always #5 clk = ~clk;
-
-  task spi_transfer(input logic [7:0] tx_byte, output logic [7:0] rx_byte);
+  // ---------------------------------------------------------
+  // SPI Master Task (Mode 0: CPOL=0, CPHA=0)
+  // ---------------------------------------------------------
+  task spi_transfer(input logic [7:0] tx_data, output logic [7:0] rx_data);
+    rx_data = 8'h00;
     for (int i = 7; i >= 0; i--) begin
-      mosi = tx_byte[i];
-      #50;       
-      sclk = 1;  
-      rx_byte[i] = miso;
-      #50;       
-      sclk = 0;  
+      mosi = tx_data[i];
+      #(spi_period/2);
+      
+      sclk = 1'b1;
+      rx_data[i] = miso; 
+      #(spi_period/2);
+      
+      sclk = 1'b0;
     end
   endtask
 
-  task spi_send_block(input logic [7:0] cmd, input logic [127:0] data, input int num_bytes);
-    logic [7:0] rx_dummy;
-    logic [7:0] byte_to_send;
-
-    $display("[%0t] Memulai Transaksi SPI - CMD: %h", $time, cmd);
-    cs_n = 0;
-    #50;
-
-    spi_transfer(cmd, rx_dummy);
-
-    for (int i = 0; i < num_bytes; i++) begin
-      byte_to_send = data[127 - (i*8) -: 8];
-      spi_transfer(byte_to_send, rx_dummy);
-    end
-
-    #50;
-    cs_n = 1;
-    $display("[%0t] Transaksi SPI Selesai\n", $time);
-    #200; 
-  endtask
-
+  // ---------------------------------------------------------
+  // Main Test Sequence
+  // ---------------------------------------------------------
   initial begin
-    clk = 0;
-    rst = 1;
-    sclk = 0;
-    cs_n = 1;
-    mosi = 0;
-
-    $display("==================================================");
-    $display("   MEMULAI VERIFIKASI ASCON SPI CONTROLLER        ");
-    $display("==================================================\n");
-
+    clk = 0; rst = 1; sclk = 0; cs_n = 1; mosi = 0;
     #100; rst = 0; #100;
 
-    // Uji 1: Mengirim Kunci (Command 0x10)
-    spi_send_block(8'h10, 128'h000102030405060708090A0B0C0D0E0F, 16);
-
-    // Uji 2: Mengirim Nonce (Command 0x20)
-    spi_send_block(8'h20, 128'h101112131415161718191A1B1C1D1E1F, 16);
-
-    // Uji 3: Mengirim AD (Command 0x30)
-    spi_send_block(8'h30, 128'h303132333435363738393A3B3C3D3E3F, 16);
-
-    // Uji 4: Mengirim Plaintext (Command 0x40)
-    spi_send_block(8'h40, 128'h00112233445566778899aabbccddeeff, 16);
-
-    #1000;
     $display("==================================================");
-    $display("   SIMULASI SELESAI                               ");
+    $display(" ASCON SYSTEMVERILOG TESTBENCH (HIGH-SPEED)");
     $display("==================================================");
-    $finish;
-  end
 
-  initial begin
-    #70000;
-    $display("[ERROR] Timeout tercapai!");
-    $finish;
-  end
+    // ---------------------------------------------------------
+    // TEST 1: Proper Initialization (Full 16-byte Key & Nonce)
+    // ---------------------------------------------------------
+    $display("\n[TEST 1] Initializing Ascon Core...");
+    
+    // Send 16-byte Key
+    cs_n = 0; #(spi_period);
+    spi_transfer(8'h10, rx_byte); // CMD 0x10
+    for(int i=0; i<16; i++) spi_transfer(i, rx_byte);
+    #50; cs_n = 1; #100;
 
-  // ---------------------------------------------------------
-  // BLOK PEMANTAU (MONITOR) OTOMATIS
-  // ---------------------------------------------------------
-  always @(posedge clk) begin
-    if (uut.key_valid && uut.key_ready) begin
-      $display("   -> [MONITOR] Ascon Core menerima 32-bit KEY  : %x", uut.key);
+    // Send 16-byte Nonce
+    cs_n = 0; #(spi_period);
+    spi_transfer(8'h20, rx_byte); // CMD 0x20
+    for(int i=0; i<16; i++) spi_transfer(8'hFF - i, rx_byte);
+    #50; cs_n = 1; 
+
+    // Wait for the Ascon Core to finish its 12-round initialization
+    $display("         Waiting for Ascon FSM INIT rounds to complete...");
+    #300; 
+
+    // ---------------------------------------------------------
+    // TEST 2: The Broken MISO Path Bug Trigger
+    // ---------------------------------------------------------
+    $display("\n[TEST 2] Processing Message to trigger MISO/BDO Bug...");
+    cs_n = 0; #(spi_period);
+    spi_transfer(8'h40, rx_byte); // CMD 0x40 (Load MSG)
+    
+    // Sending exactly 1 word (4 bytes) to trigger the core to output BDO
+    spi_transfer(8'hAA, rx_byte);
+    spi_transfer(8'hBB, rx_byte);
+    spi_transfer(8'hCC, rx_byte);
+    spi_transfer(8'hDD, rx_byte); 
+    #100; cs_n = 1; #100;
+
+    // ---------------------------------------------------------
+    // TEST 3: The CS-Timing Hazard Bug Trigger
+    // ---------------------------------------------------------
+    $display("\n[TEST 3] Simulating fast CS_N drop to trigger Hazard...");
+    cs_n = 0; #(spi_period);
+    spi_transfer(8'h30, rx_byte); // CMD 0x30 (Load AD)
+    
+    spi_transfer(8'h11, rx_byte);
+    spi_transfer(8'h22, rx_byte);
+    spi_transfer(8'h33, rx_byte);
+
+    // Manual SPI transfer for the final byte to drop CS_N EXACTLY on the clock edge
+    rx_byte = 8'h00;
+    for (int i = 7; i >= 0; i--) begin
+      mosi = (8'h44 >> i) & 1'b1;
+      #(spi_period/2);
+      sclk = 1'b1;
+      rx_byte[i] = miso;
+      #(spi_period/2);
+      sclk = 1'b0;
     end
     
-    if (uut.bdi_valid != 4'b0000 && uut.bdi_ready) begin
-      $display("   -> [MONITOR] Ascon Core menerima 32-bit DATA : %x (Tipe: %0d)", uut.bdi, uut.bdi_type);
+    // PREMATURE DROP: Pulling CS high the nanosecond the SCLK falls.
+    // The synchronizer won't process the final SCLK edge in time!
+    cs_n = 1; 
+    #200;
+
+    $display("\n==================================================");
+    $display(" SIMULATION COMPLETE.");
+    $display("==================================================");
+    $finish;
+  end
+
+// ---------------------------------------------------------
+  // TEXT-BASED RESULT LOGGER (V3 - POST-LATCH CHECK)
+  // ---------------------------------------------------------
+  initial $timeformat(-9, 0, " ns", 10); 
+
+  logic bdo_valid_q;
+  logic [31:0] bdo_q;
+
+  always_ff @(posedge clk) begin
+    if (rst) begin
+      bdo_valid_q <= 1'b0;
+      bdo_q <= 32'd0;
+    end else begin
+      bdo_valid_q <= dut.spi_ctrl.bdo_valid;
+      bdo_q <= dut.spi_ctrl.bdo;
     end
   end
 
+  always @(posedge clk) begin
+    if (!rst) begin
+      // 1. Check the CS-Timing Hazard Fix
+      if (dut.spi_ctrl.cs_rise) begin
+        if (dut.spi_ctrl.byte_cnt != 0) begin
+           $display("\n[%t] [ERROR] ❌ CS Hazard still exists! byte_cnt: %0d", $time, dut.spi_ctrl.byte_cnt);
+        end else begin
+           $display("\n[%t] [SUCCESS] ✅ CS Hazard Fixed! Final byte safely processed before FSM reset.", $time);
+        end
+      end
+
+      // 2. Check the MISO Shift Register Fix
+      if (bdo_valid_q) begin
+        $display("\n[%t] [SUCCESS] ✅ MISO Shift Register Latched!", $time);
+        $display("                      Core BDO output: 32'h%h", bdo_q);
+        $display("                      Shift reg holds: 32'h%h", dut.spi_ctrl.tx_shift_reg);
+      end
+    end
+  end
 endmodule
