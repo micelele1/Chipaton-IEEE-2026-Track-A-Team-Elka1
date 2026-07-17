@@ -248,7 +248,8 @@ assign fsm_q = fsm_t'(fsm_q_logic);
 
     // Initialize:
     if (idle_done) begin
-      if (mode == M_AEAD128_ENC || mode == M_AEAD128_DEC) fsm_d = key_valid ? LD_KEY : LD_NPUB;
+        if (mode == M_AEAD128_ENC || mode == M_AEAD128_DEC)
+            fsm_d = LD_KEY;
     end
     if (ld_key_done) fsm_d = LD_NPUB;
     if (ld_npub_done) fsm_d = INIT;
